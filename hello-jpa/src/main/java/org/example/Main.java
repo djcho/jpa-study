@@ -9,7 +9,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         //[엔티티 매니저 팩토리] - 생성
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpatest");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hellojpa");
         //[엔티티 매니저] - 생성
         EntityManager em = emf.createEntityManager();
         //[트랜잭션] - 획득
