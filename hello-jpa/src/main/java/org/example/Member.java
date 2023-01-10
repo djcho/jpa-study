@@ -4,17 +4,18 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="MEMBER", uniqueConstraints = {@UniqueConstraint(
-        name = "NAME_AGE_UNIQUE",
-        columnNames = {"NAME", "AGE"}
-)})
 public class Member {
     @Id
-    @Column(name = "ID")
+    @Column(name = "MEMBER_ID")
     private String id;
 
     @Column(name = "NAME", nullable = false, length = 10)
     private String username;
+
+    //연관관계 매핑
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
     //매핑 정보가 없는 필드
     private Integer age;
@@ -31,6 +32,13 @@ public class Member {
 
     @Lob
     private Date description;
+
+    public Member(){
+    }
+    public Member(String id, String username) {
+        this.id = id;
+        this.username = username;
+    }
 
     //Getter, Setter
     public String getId() {
@@ -50,5 +58,9 @@ public class Member {
     }
     public void setAge(Integer age){
         this.age = age;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
