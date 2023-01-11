@@ -59,8 +59,13 @@ public class Member {
     public void setAge(Integer age){
         this.age = age;
     }
-
+    public Team getTeam(){
+        return this.team;
+    }
     public void setTeam(Team team) {
         this.team = team;
+        team.getMembers().add(this);
     }
+
+
 }

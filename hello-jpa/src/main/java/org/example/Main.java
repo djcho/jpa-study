@@ -18,9 +18,12 @@ public class Main {
         try{
             tx.begin();     //[트랜잭션] - 시작
             testSave(em);
-            queryLogicJoin(em);      //비즈니스 로직 실행
-            updateRelation(em);
-            deleteRelation(em);
+            tx.commit();
+            tx.begin();
+            //queryLogicJoin(em);      //비즈니스 로직 실행
+            //updateRelation(em);
+            //deleteRelation(em);
+            biDirection(em);
             tx.commit();    //[트랜잭션] - 커밋
         }catch (Exception e){
             tx.rollback();  //[트랜잭션] - 롤백
@@ -100,5 +103,14 @@ public class Main {
     private static void deleteRelation(EntityManager em){
         Member member1 = em.find(Member.class, "member1");
         member1.setTeam(null);
+    }
+
+    public static void biDirection(EntityManager em){
+        Team team = em.find(Team.class, "team1");
+        List<Member> members = team.getMembers(); //(팀 -> 회원)
+
+        for(Member member : members){
+            System.out.println("member.username = " + member.getUsername());
+        }
     }
 }

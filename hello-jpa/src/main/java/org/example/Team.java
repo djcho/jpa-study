@@ -3,6 +3,9 @@ package org.example;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Team {
@@ -11,6 +14,10 @@ public class Team {
     private String id;
 
     private String name;
+
+    //==추가==//
+    @OneToMany(mappedBy = "team")
+    private List<Member> members = new ArrayList<Member>();
 
     public Team(String id, String name) {
         this.id = id;
@@ -31,5 +38,12 @@ public class Team {
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public void setMember(Member member){
+        this.members.add(member);
+    }
+    public List<Member> getMembers() {
+        return this.members;
     }
 }
