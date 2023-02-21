@@ -13,9 +13,9 @@ public class Member {
     private String username;
 
     //연관관계 매핑
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
-    private Team team;
+//    @ManyToOne
+//    @JoinColumn(name = "TEAM_ID")
+//    private Team team;
 
     //매핑 정보가 없는 필드
     private Integer age;
@@ -59,13 +59,13 @@ public class Member {
     public void setAge(Integer age){
         this.age = age;
     }
-    public Team getTeam(){
-        return this.team;
-    }
-    public void setTeam(Team team) {
-        this.team = team;
-        team.getMembers().add(this);
-    }
+//    public Team getTeam(){
+//        return this.team;
+//    }
+//    public void setTeam(Team team) {
+//        this.team = team;
+//        team.getMembers().add(this);
+//    }
 
 
 }
